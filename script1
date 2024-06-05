@@ -1,0 +1,19 @@
+#!/bin/bash
+if ! grep -q 'deb http://archive.ubuntu.com/ubuntu jammy-backports main restricted universe multiverse' /etc/apt/sources.list.d/official-package-repositories.list #проверка backports
+then sudo echo 'deb http://archive.ubuntu.com/ubuntu jammy-backports main restricted universe multiverse' >> /etc/apt/sources.list.d/official-package-repositories.list #установка backports, если не найден
+fi
+sudo apt-get update #обновление пакетного менеджера
+sudo apt -y install apache2 #установка Apache2
+sudo systemctl start apache2 #запуск Apache
+sudo apt -y install python3 #установка Python
+sudo apt-get -y install ssh # установка SSH
+#
+sudo apt install cron #установить планировщик
+sudo systemctl enable cron 
+useradd -D -b /home/linuxuser -s /bin/bash #задать новому пользователю shell и home
+sudo useradd -p newlinuxuser -m linuxuser #создать пользователя linuxuser
+passwd -x 7 linuxuser #ограничить срок действия пароля
+mkdir /home/linuxuser/important #создать директорию для важных документов
+mkdir /home/linuxuser/backup #создать директорию для бэкапа
+sudo echo "0 9 * * 1 'tar cpf /home/linuxuser/backup/full.tar /home/linuxuser/important'" >> /var/spool/cron/crontabs/linuxuser #создать задачу архивации важных документов
+
