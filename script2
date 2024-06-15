@@ -1,3 +1,0 @@
-#!/bin/bash
-tar cpf /tmp/"full-backup created on `date '+%d-%B-%Y'`.tar" /home /var/log /etc/vsftpd.conf /etc/ssh/sshd_config /home/user/.xsession
-cp /tmp/"full-backup created on `date '+%d-%B-%Y'`.tar" /archive
