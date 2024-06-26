@@ -1,0 +1,10 @@
+- hosts: kravchenko
+  tasks:
+    - name: Installing packages
+      become: yes
+      apt: 
+        pkg:
+          - cmatrix
+          - cowsay
+          - sl
+        state: present
