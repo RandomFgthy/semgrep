@@ -1,2 +1,0 @@
-[kravchenko]
-192.168.0.105 ansible_ssh_user=user ansible_sudo_pass=user
